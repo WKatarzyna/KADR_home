@@ -3,7 +3,6 @@ function Page(htmlElement) {
 this.mainPage(htmlElement);
 }
 Page.prototype.mainPage=(htmlElement)=>{
-    console.log(htmlElement);
   let pageHead= document.createElement('header');
   pageHead.classList.add('header')
   htmlElement.appendChild(pageHead);  
