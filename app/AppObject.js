@@ -8,7 +8,7 @@ let AppObject = function AppObject(htmlElement) {
 };
 AppObject.prototype = {
     CreatePageObject: function (htmlElement) {
-        page.CreateMainPage(htmlElement);
+        console.log(htmlElement)
     },
     SliderMoveHandler: function () {
 

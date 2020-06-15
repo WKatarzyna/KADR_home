@@ -1,5 +1,5 @@
 function Footer(params, parentNode) {
-
+    // parentNode.id= 'menu-black'
     let footer;
     footer = document.createElement('footer');
     footer.classList.add('pageFooter');
@@ -8,7 +8,7 @@ function Footer(params, parentNode) {
     footer.appendChild(links);
     let footerContent = document.createElement('div');
     footerContent.classList.add('footerContent');
-
+    // let paragraphElement = document.createElement('p');
     footerContent.setAttribute('style', 'white-space: pre;');
     footerContent.textContent = "Wedding & Family Natural Photography \r\n";
     footerContent.textContent += "Based in Bieszczady, Poland | ready to work worldwide \r\n";

@@ -1,16 +1,15 @@
 function Page(htmlElement) {
-    this.htmlElement=htmlElement;
     document.addEventListener('contextmenu', function (event) {
         event.preventDefault();
     }, false);
-
+    this.CreateMainPage(htmlElement);
 }
 
 //-------------------------------------Tworzenie strony głównej---------------------------------------------------
-Page.prototype.CreateMainPage = function () {
+Page.prototype.CreateMainPage = function (htmlElement) {
     let pageHead = document.createElement('header');
     pageHead.classList.add('header');
-    this.htmlElement[0].appendChild(pageHead);
+    htmlElement[0].appendChild(pageHead);
     let navigation = document.createElement('nav');
     pageHead.appendChild(navigation);
     let socList = document.createElement('div');
@@ -39,7 +38,7 @@ Page.prototype.CreateMainPage = function () {
     new Footer((params) => {
             params.id = 'footer' //sprawdzić jak nadawało sie parametry
         }
-        , this.htmlElement[0]);
+        , htmlElement[0]);
 //instagram icon--main menu
     let instSvg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
     instSvg.id = 'instagram';
@@ -127,109 +126,109 @@ Page.prototype.CreateSlider = function (pageHead) {
 
 };
 Page.prototype.sectionAbout = function () {
-    new Content((params) => {
+    let container = document.getElementById('container');
+    while (container.firstChild) {
+        container.firstChild.remove();
+    }
+    let header = document.createElement('header')
+    container.append(header);
+    let headerPrimary = document.createElement('div');
+    headerPrimary.classList.add('title-box');
+    headerPrimary.textContent = "BYŁ.SOBIE.KADR";
+    header.appendChild(headerPrimary);
+    let navigation = document.createElement('nav');
+    header.appendChild(navigation);
+    let navList = document.createElement('div');
+    navList.classList.add('menu__container--black');
+    navigation.appendChild(navList);
+
+    new Navigation((params) => {
             params.id = 'menu' //sprawdzić jak nadawało sie parametry
         }
-        , page.htmlElement[0]);
-    let ctx = document.getElementsByClassName('content');
-    console.log(ctx)
-    // while (this.htmlElement.firstChild) {
-    //     this.htmlElement.firstChild.remove();
-    // }
-    // let header = document.createElement('header')
-    // this.htmlElement[0].append(header);
-    // let headerPrimary = document.createElement('div');
-    // headerPrimary.classList.add('title-box');
-    // headerPrimary.textContent = "BYŁ.SOBIE.KADR";
-    // header.appendChild(headerPrimary);
-    // let navigation = document.createElement('nav');
-    // header.appendChild(navigation);
-    // let navList = document.createElement('div');
-    // navList.classList.add('menu__container--black');
-    // navigation.appendChild(navList);
-    //
-    // new Navigation((params) => {
-    //         params.id = 'menu' //sprawdzić jak nadawało sie parametry
-    //     }
-    //     , navList);
-    // let pageContent = document.createElement('div');
-    // pageContent.classList.add('section-about');
-    // container.appendChild(pageContent);
-    // let contentDesc = document.createElement('div');
-    // contentDesc.classList.add('content');
-    // pageContent.appendChild(contentDesc);
-    // let pageHeader = document.createElement('h1');
-    // pageHeader.textContent = 'Poznajmy sie!';
-    // pageHeader.classList.add('header-primary');
-    // contentDesc.appendChild(pageHeader);
-    // let backSide = document.createElement('div');
-    // contentDesc.appendChild(backSide);
-    // backSide.classList.add('backSide');
-    // let contentText = document.createElement('div');
-    // contentText.classList.add('content-text');
-    // contentDesc.appendChild(contentText);
-    // // let paragraphElement = document.createElement('div');
-    // contentText.innerHTML = "<p><strong>MIŁOŚĆ , NATURA i EMOCJE</strong> ...to one mnie napędzają Bieszczady to mój dom, a górskie wędrówki wśród lasów i połonin dodają mi energii i dystansu. Powiew porannego wiatru, zastane <strong>ŚWIATŁO</strong>, lekkość i ostrość górskiego powietrza - to je wybieram! Lubię wyjść z domu niespiesznie popatrzeć na zieleń lasu, tak po prostu... <strong>BYŁ.SOBIE.KADR</strong> to projekt ode mnie dla Was!<br>Naturalne, reporterskie fotografie, które zostaną z Wami przez lata! Na Waszym ślubie będę cichym obserwatorem, który złapie te najpiękniejsze momenty na <strong>FOTOGRAFIACH</strong>.<br> Zapraszam Was do mojego świata, a Wy zaprościemnie do waszego, żebym mogła opowiedzieć Waszą piękną historię. Jestem wędrowcem i lubię odkrywać nowe miejsca, dlatego przyjadę gdzie tylko chcecie! Zapraszam jednocześnie do mojej przestrzeni, na niezapomnianą sesję przez bieszczadzkie połoniny. Niech się dzieje <strong>MAGIA!</strong><br> <strong>Aneta Smarkucka</strong></p>";
-    // // contentText.appendChild(paragraphElement);
-    // let avatar = document.createElement('div');
-    // avatar.id = 'avatar';
-    // pageContent.appendChild(avatar);
-    //
-    // new Footer((params) => {
-    //         params.id = 'footer' //sprawdzić jak nadawało sie parametry
-    //     }
-    //     , container);
+        , navList);
+    let pageContent = document.createElement('div');
+    pageContent.classList.add('section-about');
+    container.appendChild(pageContent);
+    let contentDesc = document.createElement('div');
+    contentDesc.classList.add('content');
+    pageContent.appendChild(contentDesc);
+    let pageHeader = document.createElement('h1');
+    pageHeader.textContent = 'Poznajmy sie!';
+    pageHeader.classList.add('header-primary');
+    contentDesc.appendChild(pageHeader);
+    let backSide = document.createElement('div');
+    contentDesc.appendChild(backSide);
+    backSide.classList.add('backSide');
+    let contentText = document.createElement('div');
+    contentText.classList.add('content-text');
+    contentDesc.appendChild(contentText);
+    // let paragraphElement = document.createElement('div');
+    contentText.innerHTML = "<p><strong>MIŁOŚĆ , NATURA i EMOCJE</strong> ...to one mnie napędzają Bieszczady to mój dom, a górskie wędrówki wśród lasów i połonin dodają mi energii i dystansu. Powiew porannego wiatru, zastane <strong>ŚWIATŁO</strong>, lekkość i ostrość górskiego powietrza - to je wybieram! Lubię wyjść z domu niespiesznie popatrzeć na zieleń lasu, tak po prostu... <strong>BYŁ.SOBIE.KADR</strong> to projekt ode mnie dla Was!<br>Naturalne, reporterskie fotografie, które zostaną z Wami przez lata! Na Waszym ślubie będę cichym obserwatorem, który złapie te najpiękniejsze momenty na <strong>FOTOGRAFIACH</strong>.<br> Zapraszam Was do mojego świata, a Wy zaprościemnie do waszego, żebym mogła opowiedzieć Waszą piękną historię. Jestem wędrowcem i lubię odkrywać nowe miejsca, dlatego przyjadę gdzie tylko chcecie! Zapraszam jednocześnie do mojej przestrzeni, na niezapomnianą sesję przez bieszczadzkie połoniny. Niech się dzieje <strong>MAGIA!</strong><br> <strong>Aneta Smarkucka</strong></p>";
+    // contentText.appendChild(paragraphElement);
+    let avatar = document.createElement('div');
+    avatar.id = 'avatar';
+    pageContent.appendChild(avatar);
+
+    new Footer((params) => {
+            params.id = 'footer' //sprawdzić jak nadawało sie parametry
+        }
+        , container);
 
 
 };
 Page.prototype.sectionContact = function () {
     console.log('in menu')
 
-    // let container = document.getElementById('container');
-    // while (container.firstChild) {
-    //     container.firstChild.remove();
-    // }
-    // let header = document.createElement('header')
-    // container.append(header);
-    // let headerPrimary = document.createElement('div');
-    // headerPrimary.classList.add('title-box');
-    // headerPrimary.textContent = "BYŁ.SOBIE.KADR";
-    // header.appendChild(headerPrimary);
-    // let navigation = document.createElement('nav');
-    // header.appendChild(navigation);
-    // let navList = document.createElement('div');
-    // navList.classList.add('menu__container--black');
-    // navigation.appendChild(navList);
-    //
-    // new Navigation((params) => {
-    //         params.id = 'menu' //sprawdzić jak nadawało sie parametry
-    //     }
-    //     , navList);
-    // let pageContent = document.createElement('div');
-    // pageContent.classList.add('section-about');
-    // container.appendChild(pageContent);
-    // let contentDesc = document.createElement('div');
-    // contentDesc.classList.add('content');
-    // pageContent.appendChild(contentDesc);
-    // let pageHeader = document.createElement('h1');
-    // pageHeader.textContent = 'Poznajmy sie!';
-    // pageHeader.classList.add('header-primary');
-    // contentDesc.appendChild(pageHeader);
-    // let backSide = document.createElement('div');
-    // contentDesc.appendChild(backSide);
-    // backSide.classList.add('backSide');
-    //
-    // const contactPagePhoto = document.createElement('div');
-    // contactPagePhoto.classList.add('contactPage_photo')
-    // pageContent.appendChild(contactPagePhoto);
-    //
-    // new Footer((params) => {
-    //         params.id = 'footer' //sprawdzić jak nadawało sie parametry
-    //     }
-    //     , container);
+    let container = document.getElementById('container');
+    while (container.firstChild) {
+        container.firstChild.remove();
+    }
+    let header = document.createElement('header')
+    container.append(header);
+    let headerPrimary = document.createElement('div');
+    headerPrimary.classList.add('title-box');
+    headerPrimary.textContent = "BYŁ.SOBIE.KADR";
+    header.appendChild(headerPrimary);
+    let navigation = document.createElement('nav');
+    header.appendChild(navigation);
+    let navList = document.createElement('div');
+    navList.classList.add('menu__container--black');
+    navigation.appendChild(navList);
+
+    new Navigation((params) => {
+            params.id = 'menu' //sprawdzić jak nadawało sie parametry
+        }
+        , navList);
+    let pageContent = document.createElement('div');
+    pageContent.classList.add('section-about');
+    container.appendChild(pageContent);
+    let contentDesc = document.createElement('div');
+    contentDesc.classList.add('content');
+    pageContent.appendChild(contentDesc);
+    let pageHeader = document.createElement('h1');
+    pageHeader.textContent = 'Poznajmy sie!';
+    pageHeader.classList.add('header-primary');
+    contentDesc.appendChild(pageHeader);
+    let backSide = document.createElement('div');
+    contentDesc.appendChild(backSide);
+    backSide.classList.add('backSide');
+    let contentText = document.createElement('div');
+    contentText.classList.add('content-text');
+    contentDesc.appendChild(contentText);
+    // let paragraphElement = document.createElement('div');
+    contentText.innerHTML = "<p><strong>MIŁOŚĆ , NATURA i EMOCJE</strong> ...to one mnie napędzają Bieszczady to mój dom, a górskie wędrówki wśród lasów i połonin dodają mi energii i dystansu. Powiew porannego wiatru, zastane <strong>ŚWIATŁO</strong>, lekkość i ostrość górskiego powietrza - to je wybieram! Lubię wyjść z domu niespiesznie popatrzeć na zieleń lasu, tak po prostu... <strong>BYŁ.SOBIE.KADR</strong> to projekt ode mnie dla Was!<br>Naturalne, reporterskie fotografie, które zostaną z Wami przez lata! Na Waszym ślubie będę cichym obserwatorem, który złapie te najpiękniejsze momenty na <strong>FOTOGRAFIACH</strong>.<br> Zapraszam Was do mojego świata, a Wy zaprościemnie do waszego, żebym mogła opowiedzieć Waszą piękną historię. Jestem wędrowcem i lubię odkrywać nowe miejsca, dlatego przyjadę gdzie tylko chcecie! Zapraszam jednocześnie do mojej przestrzeni, na niezapomnianą sesję przez bieszczadzkie połoniny. Niech się dzieje <strong>MAGIA!</strong><br> <strong>Aneta Smarkucka</strong></p>";
+    // contentText.appendChild(paragraphElement);
+    let avatar = document.createElement('div');
+    avatar.id = 'avatar';
+    pageContent.appendChild(avatar);
+
+    new Footer((params) => {
+            params.id = 'footer' //sprawdzić jak nadawało sie parametry
+        }
+        , container);
 
 
-};
+}
 
 
 
