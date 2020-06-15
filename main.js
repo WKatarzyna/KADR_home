@@ -1,4 +1,6 @@
 let appObject;
+
 window.onload = function() {
-    appObject = new AppObject(document.getElementById('container'));
+    appObject = new AppObject(document.getElementsByClassName('container'));
+
 };
